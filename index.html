@@ -4,136 +4,1077 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BowlUp - Comida Saudável, Inclusiva e Delivery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --primary: #FF6B00;
+      --primary-light: #FF8C33;
+      --secondary: #E89825;
+      --dark: #333333;
+      --light: #FFFFFF;
+      --gray: #F5F5F5;
+      --overlay: rgba(0,0,0,0.3);
+    }
+    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
     }
+    
     body {
-      background: #fff;
-      color: #333;
+      background: var(--light);
+      color: var(--dark);
       line-height: 1.6;
+      overflow-x: hidden;
     }
+    
+    /* Header */
+    .header-container {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      min-height: 100vh;
+    }
+    
     header {
-      background: #FF6B00;
-      color: white;
-      padding: 1.5rem 2rem;
+      padding: 1.5rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 10;
     }
-    header h1 {
-      font-size: 1.8rem;
+    
+    .logo {
+      height: 60px;
+      transition: transform 0.3s;
     }
+    
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    
+    .logo img {
+      height: 100%;
+      width: auto;
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
     nav a {
-      color: white;
+      color: var(--light);
       text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 600;
-    }
-    .hero {
-      background: #FFF2E5;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .hero h2 {
-      font-size: 2.5rem;
-      color: #FF6B00;
-      margin-bottom: 1rem;
-    }
-    .hero p {
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-shadow: 0 0 5px rgba(0,0,0,0.3);
       font-size: 1.1rem;
-      max-width: 600px;
+      position: relative;
+    }
+    
+    nav a:not(.nav-button):hover {
+      color: var(--secondary);
+    }
+    
+    .nav-button {
+      background: transparent;
+      color: var(--light) !important;
+      padding: 0.7rem 2rem;
+      border: 2px solid var(--light);
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-shadow: none;
+    }
+    
+    .nav-button:hover {
+      background: var(--light) !important;
+      color: var(--primary) !important;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 0 5%;
+      height: calc(100vh - 90px);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 650px;
+      color: var(--light);
+      position: relative;
+      z-index: 5;
+      animation: fadeInUp 1s ease;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+      font-weight: 300;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(255,107,0,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-light);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255,107,0,0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 1rem 2.5rem;
+      border: 2px solid white;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-3px);
+    }
+    
+    /* Features Section */
+    .features-section {
+      padding: 6rem 5%;
+      background: white;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-title h2 {
+      font-size: 2.8rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    
+    .section-title p {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 700px;
       margin: 0 auto;
     }
-    .features {
+    
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 3rem 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .feature {
-      background: #F5F5F5;
-      border-radius: 1rem;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    }
-    .feature h3 {
-      color: #FF6B00;
-      margin-bottom: 1rem;
-    }
-    .cta {
-      background: #FF6B00;
-      color: white;
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-    .cta button {
+    
+    .feature-card {
       background: white;
-      color: #FF6B00;
-      padding: 1rem 2rem;
+      border-radius: 15px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255,107,0,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--primary);
+      font-size: 2rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .feature-card p {
+      color: #666;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    
+    /* Menu Preview */
+    .menu-section {
+      padding: 6rem 5%;
+      background: var(--gray);
+    }
+    
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 3rem auto 0;
+    }
+    
+    .menu-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .menu-item-img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .menu-item-content {
+      padding: 1.8rem;
+    }
+    
+    .menu-item h3 {
+      font-size: 1.4rem;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .menu-item p {
+      color: #666;
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+    
+    .menu-item-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .add-to-cart {
+      background: var(--primary);
+      color: white;
       border: none;
-      border-radius: 2rem;
-      font-size: 1rem;
-      font-weight: bold;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: all 0.3s;
     }
-    .cta button:hover {
-      background: #ffe1cc;
-    }
-    footer {
-      background: #333;
-      color: white;
-      text-align: center;
-      padding: 1rem;
+    
+    .add-to-cart:hover {
+      background: var(--primary-light);
+      transform: scale(1.1);
     }
     
+    /* App Section */
+    .app-section {
+      padding: 6rem 5%;
+      background: white;
+    }
+    
+    .app-container {
+      display: flex;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 5rem;
+    }
+    
+    .app-image {
+      flex: 1;
+      position: relative;
+    }
+    
+    .app-image img {
+      width: 75%;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+    
+    .app-content {
+      flex: 1;
+    }
+    
+    .app-content h2 {
+      font-size: 2.5rem;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .app-content p {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    
+    .app-stores {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .app-store-btn {
+      height: 50px;
+      transition: all 0.3s;
+    }
+    
+    .app-store-btn:hover {
+      transform: translateY(-3px);
+    }
+    
+    /* Testimonials */
+    .testimonials-section {
+      padding: 6rem 5%;
+      background: var(--gray);
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 3rem auto 0;
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+    
+    .testimonial-author h4 {
+      font-size: 1.2rem;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+    
+    .testimonial-author p {
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+    
+    .testimonial-rating {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-text {
+      color: #666;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 6rem 5%;
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .cta-content h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 5rem 5% 2rem;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      height: 50px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-about p {
+      opacity: 0.7;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.3s;
+    }
+    
+    .social-link:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    .footer-links h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+    
+    .footer-links h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--primary);
+    }
+    
+    .footer-links ul {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    .footer-newsletter p {
+      opacity: 0.7;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      margin-bottom: 1.5rem;
+    }
+    
+    .newsletter-input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      font-size: 1rem;
+    }
+    
+    .newsletter-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0 1.5rem;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .newsletter-btn:hover {
+      background: var(--primary-light);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .footer-bottom p {
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .app-container {
+        flex-direction: column;
+        gap: 3rem;
+      }
+      
+      .app-content {
+        text-align: center;
+      }
+      
+      .app-stores {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--dark);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem;
+        gap: 1.5rem;
+        transition: all 0.4s ease;
+        z-index: 100;
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .section-title h2 {
+        font-size: 2.2rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>BowlUp</h1>
-    <nav>
-      <a href="#">Menu</a>
-      <a href="#">Gamifique</a>
-      <a href="#">Inclusão</a>
-      <a href="#">Entrega</a>
-      <a href="#">Baixe o App</a>
-    </nav>
-  </header>
-  <section class="hero">
-    <h2>Comida saudável, rápida e inclusiva</h2>
-    <p>Experimente refeições saborosas e equilibradas, direto no seu app. Ganhe pontos, desbloqueie metas saudáveis e descubra um novo jeito de comer bem!</p>
+  <!-- Header -->
+  <div class="header-container">
+    <header>
+      <div class="logo">
+        <a href="#"><img src="/img/BolwUp_Logo.png" alt="BowlUp Logo"></a>
+      </div>
+      
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <nav>
+        <a href="#features">Recursos</a>
+        <a href="#menu">Cardápio</a>
+        <a href="#app">App</a>
+        <a href="#testimonials">Depoimentos</a>
+        <a href="#" class="nav-button">Baixe o App</a>
+      </nav>
+    </header>
+  
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Comida saudável, rápida e inclusiva</h1>
+        <p>Experimente refeições saborosas e equilibradas, direto no seu app. Ganhe pontos, desbloqueie metas saudáveis e descubra um novo jeito de comer bem!</p>
+        
+        <div class="hero-buttons">
+          <button class="btn-primary">
+            <i class="fas fa-download"></i> Baixar App
+          </button>
+          <button class="btn-secondary">
+            <i class="fas fa-utensils"></i> Ver Cardápio
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <section class="features-section" id="features">
+    <div class="section-title">
+      <h2>Por que escolher o BowlUp?</h2>
+      <p>Nossa plataforma oferece a melhor experiência em alimentação saudável com conveniência e personalização</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-gamepad"></i>
+        </div>
+        <h3>Gamificação Nutritiva</h3>
+        <p>Ganhe pontos ao escolher pratos saudáveis, complete desafios e evolua sua alimentação enquanto se diverte.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <h3>Menu Inclusivo</h3>
+        <p>Opções veganas, sem glúten, sem lactose e totalmente personalizáveis. Aqui, todos podem comer bem.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3>Entrega Turbo</h3>
+        <p>Receba sua bowl em poucos minutos com nossa tecnologia de rota inteligente e hubs urbanos estratégicos.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <h3>App Intuitivo</h3>
+        <p>Escolha, personalize, acompanhe sua evolução nutricional — tudo em um só lugar, de forma simples e rápida.</p>
+      </div>
+    </div>
   </section>
-  <section class="features">
-    <div class="feature">
-      <h3>Gamificação Nutritiva</h3>
-      <p>Ganhe pontos ao escolher pratos saudáveis, complete desafios e evolua sua alimentação.</p>
+  
+  <!-- Menu Section -->
+  <section class="menu-section" id="menu">
+    <div class="section-title">
+      <h2>Nosso Cardápio</h2>
+      <p>Descubra nossas deliciosas opções de bowls nutritivos e balanceados</p>
     </div>
-    <div class="feature">
-      <h3>Menu Inclusivo</h3>
-      <p>Opções veganas, sem glúten, sem lactose e personalizáveis. Aqui, todos podem comer bem.</p>
-    </div>
-    <div class="feature">
-      <h3>Entrega Turbo</h3>
-      <p>Receba sua bowl em poucos minutos com tecnologia de rota inteligente e hubs urbanos.</p>
-    </div>
-    <div class="feature">
-      <h3>App Intuitivo</h3>
-      <p>Escolha, personalize, acompanhe sua evolução nutricional — tudo em um só lugar.</p>
+    
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="/img/Bowl_Proteico_Mediterraneo.png" alt="Bowl Mediterrâneo" class="menu-item-img">
+        <div class="menu-item-content">
+          <h3>Bowl Proteico Mediterrâneo</h3>
+          <p>Arroz integral com ervas, filé de frango grelhado, tomate cereja, pepino, azeitonas pretas sem sal, homus.</p>
+          <div class="menu-item-price">
+            R$ 29,90
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <img src="/img/Bowl_Arco_iris_Veggie.png" alt="Bowl Vegano" class="menu-item-img">
+        <div class="menu-item-content">
+          <h3>Bowl Arco-Íris Veggie</h3>
+          <p>Quinoa colorida, tofu grelhado, cenoura, beterraba, abobrinha, grão-de-bico crocante e molho tahine com limão.</p>
+          <div class="menu-item-price">
+            R$ 27,90
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <img src="/img/Bowl_energetico_tropical.png" alt="Bowl Proteico" class="menu-item-img">
+        <div class="menu-item-content">
+          <h3>Bowl Energético Tropical</h3>
+          <p>Açaí sem açúcar ou iogurte vegetal de coco, banana, chia, granola sem açúcar, morangos frescos e lascas de coco.</p>
+          <div class="menu-item-price">
+            R$ 32,90
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <img src="/img/Bowl_zero_Açucar_Matinal.png" alt="Bowl Tropical" class="menu-item-img">
+        <div class="menu-item-content">
+          <h3>Bowl Zero Açúcar Matinal</h3>
+          <p>Overnight oats com bebida vegetal de amêndoas, maçã verde, castanha do pará, canela, linhaça.</p>
+          <div class="menu-item-price">
+            R$ 26,90
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <img src="/img/Bowl_Confort_Jantar.png" alt="Bowl Mexicano" class="menu-item-img">
+        <div class="menu-item-content">
+          <h3>Bowl Comfort de Jantar</h3>
+          <p>Purê de batata doce, lentilhas ao curry, cebola caramelizada (sem açúcar), couve refogada, sementes de abóbora.</p>
+          <div class="menu-item-price">
+            R$ 28,90
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <img src="/img/Bowl_Crunchy_tropical.png" alt="Bowl Asiático" class="menu-item-img">
+        <div class="menu-item-content">
+          <h3>BBowl Crunchy Tropical</h3>
+          <p>Mix de frutas da estação, crocante de aveia com canela, creme de castanha-de-caju.</p>
+          <div class="menu-item-price">
+            R$ 34,90
+            <button class="add-to-cart">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="cta">
-    <h2>Baixe agora e BowlUp sua vida!</h2>
-    <button>Baixar o App</button>
+  
+  <!-- App Section -->
+  <section class="app-section" id="app">
+    <div class="app-container">
+      <div class="app-image">
+        <img src="/img/BowlUp_APP.png" alt="BowlUp App">
+      </div>
+      
+      <div class="app-content">
+        <h2>Baixe nosso app e tenha comida saudável na palma da sua mão</h2>
+        <p>Com o aplicativo BowlUp você pode personalizar seu bowl, acompanhar seu progresso nutricional, acumular pontos e ganhar recompensas por escolhas saudáveis.</p>
+        
+        <div class="app-stores">
+          <img src="/img/app-store-badge.png" alt="App Store" class="app-store-btn">
+          <img src="/img/google-play.png" alt="Google Play" class="app-store-btn">
+        </div>
+      </div>
+    </div>
   </section>
+  
+  <!-- Testimonials Section -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="section-title">
+      <h2>O que nossos clientes dizem</h2>
+      <p>Veja depoimentos de pessoas que transformaram sua alimentação com o BowlUp</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Maria Silva" class="testimonial-avatar">
+          <div class="testimonial-author">
+            <h4>Maria Silva</h4>
+            <p>Cliente há 1 ano</p>
+          </div>
+        </div>
+        <div class="testimonial-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">"O BowlUp mudou minha relação com a comida. Adoro a variedade de opções saudáveis e o sistema de gamificação me motiva a fazer escolhas melhores!"</p>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Carlos Oliveira" class="testimonial-avatar">
+          <div class="testimonial-author">
+            <h4>Carlos Oliveira</h4>
+            <p>Cliente há 8 meses</p>
+          </div>
+        </div>
+        <div class="testimonial-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <p class="testimonial-text">"Como atleta, preciso de refeições nutritivas e rápidas. O BowlUp entrega exatamente isso, com ótimo sabor e qualidade impecável."</p>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana Santos" class="testimonial-avatar">
+          <div class="testimonial-author">
+            <h4>Ana Santos</h4>
+            <p>Cliente há 6 meses</p>
+          </div>
+        </div>
+        <div class="testimonial-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">"Finalmente encontrei um serviço que respeita minhas restrições alimentares. As opções veganas são deliciosas e me sinto ótima depois de cada refeição."</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Pronto para transformar sua alimentação?</h2>
+      <p>Baixe o app agora e ganhe 20% de desconto na sua primeira compra!</p>
+      <button class="btn-primary">
+        <i class="fas fa-download"></i> Baixar App
+      </button>
+    </div>
+  </section>
+  
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 BowlUp - Todos os direitos reservados</p>
+    <div class="footer-container">
+      <div class="footer-about">
+        <img src="https://via.placeholder.com/150x50?text=BowlUp" alt="BowlUp Logo" class="footer-logo">
+        <p>O BowlUp é mais que um delivery de comida saudável - é uma revolução na forma como você se alimenta, com sabor, praticidade e inclusão.</p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Links Rápidos</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#features">Recursos</a></li>
+          <li><a href="#menu">Cardápio</a></li>
+          <li><a href="#app">App</a></li>
+          <li><a href="#testimonials">Depoimentos</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Informações</h3>
+        <ul>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Nossa Equipe</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Termos de Serviço</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-newsletter">
+        <h3>Newsletter</h3>
+        <p>Assine nossa newsletter e receba novidades, promoções e dicas de alimentação saudável.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Seu e-mail" class="newsletter-input" required>
+          <button type="submit" class="newsletter-btn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+        <p><i class="fas fa-phone"></i> (11) 1234-5678</p>
+        <p><i class="fas fa-envelope"></i> contato@bowlup.com.br</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2023 BowlUp. Todos os direitos reservados.</p>
+    </div>
   </footer>
+  
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const nav = document.querySelector('nav');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
